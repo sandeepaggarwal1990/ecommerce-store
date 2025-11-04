@@ -14,16 +14,9 @@ type Product = {
   created_at: string
 }
 
-// This tells Next.js what IDs are valid
-export async function generateStaticParams() {
-  const { data: products } = await supabase
-    .from('Products')
-    .select('id')
-  
-  return products?.map((product) => ({
-    id: product.id.toString(),
-  })) || []
-}
+// Force dynamic rendering - always fetch fresh data
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export default async function ProductDetailPage({
   params,

@@ -13,6 +13,10 @@ type Product = {
   created_at: string
 }
 
+// Force dynamic rendering - always fetch fresh data
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export default async function Home() {
   // Fetch products from Supabase
   const { data: products, error } = await supabase
